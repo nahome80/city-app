@@ -9,6 +9,7 @@ interface MobileFrameProps {
   onBack: () => void;
   showBack: boolean;
   projectName: string;
+  standalone?: boolean;
 }
 
 export default function MobileFrame({
@@ -17,6 +18,7 @@ export default function MobileFrame({
   onBack,
   showBack,
   projectName,
+  standalone = false,
 }: MobileFrameProps) {
   // Format current local time (e.g. 15:53)
   const [timeStr, setTimeStr] = React.useState("16:06");
@@ -32,6 +34,55 @@ export default function MobileFrame({
     const interval = setInterval(updateTime, 60000);
     return () => clearInterval(interval);
   }, []);
+
+  if (standalone) {
+    return (
+      <div className="w-full min-h-screen bg-[#0c0a18] flex flex-col relative overflow-x-hidden">
+        {/* M-PESA App Mini-App Header Wrapper */}
+        <div className="h-[56px] bg-[#00a859] px-4 flex justify-between items-center text-white z-40 shadow-md shrink-0 select-none">
+          <div className="flex items-center gap-3">
+            {showBack ? (
+              <button
+                onClick={onBack}
+                className="p-1 hover:bg-white/10 rounded-full transition-colors active:scale-95"
+              >
+                <ArrowLeft className="w-5 h-5 text-white" />
+              </button>
+            ) : (
+              <div className="w-7 h-7 flex items-center justify-center bg-white/20 rounded-full font-bold text-xs select-none">
+                M
+              </div>
+            )}
+            <div>
+              <div className="flex items-center gap-1.5">
+                <span className="font-extrabold text-[15px] tracking-wide uppercase">M-PESA</span>
+                <span className="text-[10px] px-1.5 py-0.5 bg-black/20 rounded-full font-medium">Mini-App</span>
+              </div>
+              <div className="flex items-center gap-1 text-[11px] text-white/80 font-medium">
+                <span>{projectName}</span>
+                <ShieldCheck className="w-3.5 h-3.5 text-yellow-300 fill-yellow-300/20" />
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-1">
+            <button className="p-2 hover:bg-white/10 rounded-full transition-colors">
+              <MoreHorizontal className="w-5 h-5 text-white" />
+            </button>
+            <div className="w-px h-5 bg-white/20 mx-0.5" />
+            <button className="p-2 hover:bg-white/10 rounded-full transition-colors">
+              <X className="w-5 h-5 text-white" />
+            </button>
+          </div>
+        </div>
+
+        {/* Screen Frame Content Area */}
+        <div className="flex-1 w-full bg-[#0c0a18] overflow-y-auto no-scrollbar relative flex flex-col">
+          {children}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="relative mx-auto max-w-[390px] w-full h-[812px] bg-[#0c0a18] rounded-[52px] shadow-2xl border-[10px] border-[#221f3b] overflow-hidden flex flex-col scale-[0.98] sm:scale-100 transition-all duration-300">

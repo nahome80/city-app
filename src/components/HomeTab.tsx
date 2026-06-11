@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Search, MapPin, Ticket, Car, UtensilsCrossed, Film, ShieldAlert, Award, ArrowUpRight, ArrowRight, ChevronDown } from "lucide-react";
+import { Search, MapPin, Ticket, Car, UtensilsCrossed, Film, ShieldAlert, Award, ArrowUpRight, ArrowRight, ChevronDown, QrCode } from "lucide-react";
 
 interface HomeTabProps {
   onNavigate: (tab: string) => void;
@@ -138,7 +138,7 @@ export default function HomeTab({
       {/* Grid Categories */}
       <div className="z-10">
         <h3 className="text-xs text-white/55 font-bold uppercase tracking-wider mb-3 px-1">Super App Services</h3>
-        <div className="grid grid-cols-4 gap-2">
+        <div className="grid grid-cols-5 gap-1.5">
           {/* Dining */}
           <button
             onClick={() => onNavigate("dining")}
@@ -182,6 +182,45 @@ export default function HomeTab({
             </div>
             <span className="text-[10px] font-bold text-white/90">Cinema</span>
           </button>
+
+          {/* Gem Hunt */}
+          <button
+            onClick={() => onNavigate("gemhunt")}
+            className="flex flex-col items-center justify-center py-3 px-1 bg-white/5 border border-white/5 rounded-2xl hover:bg-white/10 transition-all hover:scale-105 active:scale-95 text-center group"
+          >
+            <div className="w-9 h-9 rounded-xl bg-accent-gold/10 border border-accent-gold/25 flex items-center justify-center text-accent-gold group-hover:scale-110 transition-transform mb-1.5 animate-pulse">
+              <QrCode className="w-4.5 h-4.5" />
+            </div>
+            <span className="text-[10px] font-bold text-white/90">Gem Hunt</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Gem Hunt Promotional Banner */}
+      <div
+        onClick={() => onNavigate("gemhunt")}
+        className="relative overflow-hidden bg-gradient-to-r from-[#20170a] to-[#120e06] border border-amber-500/35 rounded-2xl p-3.5 cursor-pointer hover:border-amber-500/50 transition-all hover:translate-y-[-1px] group shadow-md z-10"
+      >
+        <div className="absolute right-0 top-0 w-16 h-16 bg-amber-500/5 rounded-bl-full pointer-events-none" />
+        
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-500 group-hover:scale-110 transition-transform shrink-0">
+            <QrCode className="w-4.5 h-4.5" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-1.5">
+              <span className="text-[8px] font-black uppercase text-amber-400 tracking-wider">M-PESA Shelter Game</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-ping" />
+              <span className="text-[8px] font-bold text-red-400 uppercase tracking-widest -ml-0.5">Gold Active</span>
+            </div>
+            <h4 className="font-extrabold text-[11px] text-white mt-0.5 leading-tight">
+              Spot shelter QR codes while waiting!
+            </h4>
+            <p className="text-[9px] text-white/50 mt-0.5 leading-normal">
+              Scan active gems for up to <span className="text-amber-400 font-bold">+50 PTS</span>. Gold gem active in Piazza!
+            </p>
+          </div>
+          <ArrowRight className="w-4 h-4 text-white/35 group-hover:text-white/70 group-hover:translate-x-0.5 transition-all shrink-0" />
         </div>
       </div>
 
@@ -229,7 +268,7 @@ export default function HomeTab({
             </div>
           </div>
 
-          {/* Card 2 */}
+          {/* Card 2: Restaurant */}
           <div
             onClick={() => onNavigate("dining")}
             className="flex-shrink-0 w-[240px] snap-center rounded-2xl bg-gradient-to-br from-[#dfa839]/20 to-[#a16207]/10 border border-accent-gold/20 p-4 flex flex-col justify-between h-[135px] cursor-pointer hover:border-accent-gold/40 transition-all hover:translate-y-[-2px]"
@@ -241,6 +280,22 @@ export default function HomeTab({
             </div>
             <div className="flex justify-between items-center mt-2">
               <span className="text-[10px] text-accent-gold font-bold bg-accent-gold/10 px-2 py-0.5 rounded-lg">Book Table</span>
+              <span className="text-[9px] text-accent-gold font-extrabold">+30 Loyalty PTS</span>
+            </div>
+          </div>
+
+          {/* Card 3: Hotels */}
+          <div
+            onClick={() => onNavigate("dining")}
+            className="flex-shrink-0 w-[240px] snap-center rounded-2xl bg-gradient-to-br from-[#3b82f6]/20 to-[#1d4ed8]/10 border border-blue-500/20 p-4 flex flex-col justify-between h-[135px] cursor-pointer hover:border-blue-500/40 transition-all hover:translate-y-[-2px]"
+          >
+            <div>
+              <span className="text-[8px] font-bold px-2 py-0.5 bg-blue-500/20 text-blue-300 rounded-full border border-blue-500/30 uppercase tracking-widest">HOTELS</span>
+              <h4 className="font-extrabold text-[14px] mt-2 text-white leading-tight">Sheraton Addis</h4>
+              <p className="text-[10px] text-white/60 mt-1">Deluxe from 6,500 ETB/night</p>
+            </div>
+            <div className="flex justify-between items-center mt-2">
+              <span className="text-[10px] text-blue-300 font-bold bg-blue-500/10 px-2 py-0.5 rounded-lg">Book Room</span>
               <span className="text-[9px] text-accent-gold font-extrabold">+30 Loyalty PTS</span>
             </div>
           </div>
